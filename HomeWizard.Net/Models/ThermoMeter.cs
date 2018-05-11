@@ -8,7 +8,7 @@ namespace HomeWizard.Net
     {
         public int Channel { get; set; }
         public int Model { get; set; }
-        public long Code { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty("te")]
         public double Temperature { get; set; }
