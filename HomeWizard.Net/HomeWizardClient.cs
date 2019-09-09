@@ -109,7 +109,7 @@ namespace HomeWizard.Net
         /// </summary>
         public async Task<IList<Switch>> GetSwitches()
         {
-            return await GetData<IList<Switch>>("swlist");
+            return await GetDataList<Switch, SwitchConverter>("swlist");
         }
 
         /// <summary>
