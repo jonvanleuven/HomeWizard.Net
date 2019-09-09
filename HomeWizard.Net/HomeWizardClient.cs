@@ -504,7 +504,7 @@ namespace HomeWizard.Net
             }
         }
 
-        private async Task<string> DoRequest(string url)
+        protected async Task<string> DoRequest(string url)
         {
             using (HttpResponseMessage response = await _httpClient.GetAsync(url))
             {
