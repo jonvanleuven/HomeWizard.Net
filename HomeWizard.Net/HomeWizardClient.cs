@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 using HomeWizard.Net.Converters;
 using System.Net.Http;
 using System.Threading.Tasks;
+using HomeWizard.Net.Models;
 
 namespace HomeWizard.Net
 {
@@ -461,6 +462,24 @@ namespace HomeWizard.Net
         }
 
         #endregion
+
+        
+
+        #region graphs
+        public async Task<IList<GraphData>> GetGraphMonths()
+        {
+            return await GetData<IList<GraphData>>("el/graph/0/month");
+        }
+        public async Task<IList<GraphData>> GetGraphDays()
+        {
+            return await GetData<IList<GraphData>>("el/graph/0/day");
+        }
+        public async Task<IList<Reading>> GetReadings()
+        {
+            return await GetData<IList<Reading>>("el/get/0/readings");
+        }
+        #endregion
+
 
         #region Internal methods
 
