@@ -467,17 +467,17 @@ namespace HomeWizard.Net
         
 
         #region graphs
-        public async Task<IList<GraphData>> GetGraphMonths()
+        public async Task<IList<GraphData>> GetGraphMonths(long id)
         {
-            return await GetData<IList<GraphData>>("el/graph/0/month");
+            return await GetData<IList<GraphData>>($"el/graph/{id}/month");
         }
-        public async Task<IList<GraphData>> GetGraphDays()
+        public async Task<IList<GraphData>> GetGraphDays(long id)
         {
-            return await GetData<IList<GraphData>>("el/graph/0/day");
+            return await GetData<IList<GraphData>>($"el/graph/{id}/day");
         }
-        public async Task<IList<Reading>> GetReadings()
+        public async Task<IList<Reading>> GetReadings(long id)
         {
-            return await GetData<IList<Reading>>("el/get/0/readings");
+            return await GetData<IList<Reading>>($"el/get/{id}/readings");
         }
 
         public async Task<IList<NotificationReceiver>> GetNotificationReceivers()

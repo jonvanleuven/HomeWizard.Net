@@ -40,9 +40,9 @@ namespace HomeWizard.Net
         Task RemoveTrigger(long id);
         Task SetTargetTemperature(long id, decimal temperature, int? minutes = null);
         Task SetPresetTemperatures(long id, string code, decimal home, decimal away, decimal comfort, decimal sleep);
-        Task<IList<GraphData>> GetGraphMonths();
-        Task<IList<GraphData>> GetGraphDays();
-        Task<IList<Reading>> GetReadings();
+        Task<IList<GraphData>> GetGraphMonths(long id);
+        Task<IList<GraphData>> GetGraphDays(long id);
+        Task<IList<Reading>> GetReadings(long id);
         Task<IList<NotificationReceiver>> GetNotificationReceivers();
     }
 }
