@@ -1,7 +1,7 @@
 using HomeWizard.Net.Converters;
 using Newtonsoft.Json;
 
-namespace HomeWizard.Net.Models
+namespace HomeWizard.Net
 {
     public class LoginResponse
     {

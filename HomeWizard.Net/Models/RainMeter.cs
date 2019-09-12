@@ -4,8 +4,8 @@ namespace HomeWizard.Net
 {
     public class RainMeter : Device
     {
-        public int model { get; set; }
-        public double mm { get; set; }
+        public int Model { get; set; }
+        public double Mm { get; set; }
         [JsonProperty(PropertyName = "3h")]
         public double _3h { get; set; }
     }
