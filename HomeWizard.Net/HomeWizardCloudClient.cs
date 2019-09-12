@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace HomeWizard.Net
 {
-    public class HomeWizardCloudClient : HomeWizardClient
+    public class HomeWizardCloudClient : HomeWizardClient, IHomeWizardClient
     {
         private readonly string sessionKey;
         private readonly string serial;
@@ -17,7 +17,9 @@ namespace HomeWizard.Net
             this.serial = serial;
         }
 
-        public static HomeWizardCloudClient Login(string username, string password, string name = null)
+        public bool IsLocal => false;
+
+        public static Login Login(string username, string password, string name = null)
         {
             var url = $"https://cloud.homewizard.com/account/login/?username={username}&password={password}";
             using (var response = new HttpClient { Timeout = TimeSpan.FromSeconds(30) }.GetAsync(url).Result)
@@ -27,7 +29,7 @@ namespace HomeWizard.Net
                 var result = JsonConvert.DeserializeObject<Login>(data);
                 if (result.Status == "failed")
                     throw new InvalidSession(data);
-                return new HomeWizardCloudClient(result.Session, result.Response.First(r => r.Name == name || name == null).Serial);
+                return result;
             }
         }
 

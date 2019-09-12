@@ -169,6 +169,8 @@ namespace HomeWizard.Net
             return await GetData<Sensors>("get-sensors");
         }
         
+        public bool IsLocal => true;
+
         /// <summary>
         /// Get the logs of Klik-Aan - Klik-Uit sensor
         /// </summary>
