@@ -24,8 +24,9 @@
 void Main()
 {
 	//TODO: 
-	// - Sonos inbouwen in API?
+	// - SonosExtensions: eenvoudig virtual ip switch aanmaken/aanpassen
 	// - setters van models private maken
+	// - meer api calls: LockX, radiatorknoppen.... etc
 
 	//var s = Util.GetPassword("HomeWizardOnlineSessionId").Split(',').Select(e => e.Split(':').Select(x => x.Replace("\"", "").Replace("}]", "")).ToArray()).Dump();
 	//return;
@@ -36,7 +37,7 @@ void Main()
 	//return;
 	//c.GetStatus().Result.Dump();
 	//c.GetNotificationReceivers().Result.Dump();
-	c.GetGraphDays(0).Result.Dump();//.Chart(r => r.T).AddYSeries(r => r.A).Dump();
+	c.GetStatus().Result.EnergyLinks[0].Dump();//.Chart(r => r.T).AddYSeries(r => r.A).Dump();
 	return;
 	c.GetEnergyMeters().Result.Dump("GetEnergyMeters");
 	c.GetKaKuSensorLogs(0).Result.Dump("GetKaKuSensorLogs");
