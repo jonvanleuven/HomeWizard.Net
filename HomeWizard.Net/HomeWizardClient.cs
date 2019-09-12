@@ -22,10 +22,10 @@ namespace HomeWizard.Net
     //Somfy
     //Graphs
 
-    public class HomeWizardClient
+    public class HomeWizardClient : IHomeWizardClient
     {
         private const string MinVersion = "3.35"; //HW version when this class was written
-        private const string MaxVersion = "3.372"; //HW version when this class was last updated
+        private const string MaxVersion = "3.403"; //HW version when this class was last updated
                 
         private readonly HttpClient _httpClient;
         private string _ipAddress;
@@ -35,6 +35,8 @@ namespace HomeWizard.Net
         {
             _httpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(30) };
         }
+        
+        public bool IsLocal => true;
 
         /// <summary>
         /// Connect to a HomeWizard
@@ -169,8 +171,6 @@ namespace HomeWizard.Net
             return await GetData<Sensors>("get-sensors");
         }
         
-        public bool IsLocal => true;
-
         /// <summary>
         /// Get the logs of Klik-Aan - Klik-Uit sensor
         /// </summary>
@@ -480,6 +480,12 @@ namespace HomeWizard.Net
         {
             return await GetData<IList<Reading>>("el/get/0/readings");
         }
+
+        public async Task<IList<NotificationReceiver>> GetNotificationReceivers()
+        {
+            return await GetData<IList<NotificationReceiver>>("nf-receivers");
+        }
+
         #endregion
 
 
