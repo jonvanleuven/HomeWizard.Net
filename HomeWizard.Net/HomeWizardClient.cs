@@ -7,7 +7,6 @@ using Newtonsoft.Json.Linq;
 using HomeWizard.Net.Converters;
 using System.Net.Http;
 using System.Threading.Tasks;
-using HomeWizard.Net.Models;
 
 namespace HomeWizard.Net
 {

@@ -1,6 +1,5 @@
 ﻿using HomeWizard.Net.Converters;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace HomeWizard.Net
 {

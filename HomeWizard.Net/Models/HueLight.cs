@@ -1,13 +1,9 @@
-﻿using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿using Newtonsoft.Json;
 
 namespace HomeWizard.Net
 {
     public class HueLight : Switch
     {
-        [JsonConverter(typeof(StringEnumConverter))]
-        public override SwitchType Type { get { return SwitchType.Hue; } }
         [JsonProperty("hue_id")]
         public long HueId { get; set; }
         [JsonProperty("light_id")]

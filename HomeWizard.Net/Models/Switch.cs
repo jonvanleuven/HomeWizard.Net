@@ -6,7 +6,7 @@ namespace HomeWizard.Net
     public class Switch : Device
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public virtual SwitchType Type { get; set; }
+        public SwitchType Type { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public OnOff Status { get; set; }
 
