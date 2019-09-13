@@ -2,7 +2,7 @@ using System;
 
 namespace HomeWizard.Net
 {
-    public class GraphData
+    public class EnergyLinkGraphData
     {
         public DateTime T { get; set; }
         public decimal U { get; set; }

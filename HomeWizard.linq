@@ -5,7 +5,6 @@
   <Reference>&lt;RuntimeDirectory&gt;\System.Runtime.Serialization.Json.dll</Reference>
   <NuGetReference>Newtonsoft.Json</NuGetReference>
   <Namespace>HomeWizard.Net</Namespace>
-  <Namespace>HomeWizard.Net.Models</Namespace>
   <Namespace>Newtonsoft.Json</Namespace>
   <Namespace>Newtonsoft.Json.Bson</Namespace>
   <Namespace>Newtonsoft.Json.Converters</Namespace>

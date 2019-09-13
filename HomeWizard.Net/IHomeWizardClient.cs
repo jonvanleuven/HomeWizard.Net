@@ -40,8 +40,14 @@ namespace HomeWizard.Net
         Task RemoveTrigger(long id);
         Task SetTargetTemperature(long id, decimal temperature, int? minutes = null);
         Task SetPresetTemperatures(long id, string code, decimal home, decimal away, decimal comfort, decimal sleep);
-        Task<IList<GraphData>> GetGraphMonths(long id);
-        Task<IList<GraphData>> GetGraphDays(long id);
+        Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkDay(long id);
+        Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkWeek(long id);
+        Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkMonth(long id);
+        Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkYear(long id);
+        Task<IList<TemperatureGraphData>> GetGraphTemperatureDay(long id);
+        Task<IList<TemperatureGraphData>> GetGraphTemperatureWeek(long id);
+        Task<IList<TemperatureGraphData>> GetGraphTemperatureMonth(long id);
+        Task<IList<TemperatureGraphData>> GetGraphTemperatureYear(long id);
         Task<IList<Reading>> GetReadings(long id);
         Task<IList<NotificationReceiver>> GetNotificationReceivers();
     }

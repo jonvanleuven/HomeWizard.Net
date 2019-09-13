@@ -15,7 +15,7 @@ namespace HomeWizard.Net
         public Electric Used { get; set; }
         public Gas Gas { get; set; }
         public double Kwhindex { get; set; }
-    }
+    } 
 
     public class Electric
     {

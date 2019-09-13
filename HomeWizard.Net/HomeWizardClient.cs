@@ -461,20 +461,53 @@ namespace HomeWizard.Net
             string command = "hl/edit/" + id + "/" + code + "/" + home + "/" + away + "/" + comfort + "/" + sleep;
             await GetData(command);
         }
-
+        
         #endregion
 
         
 
         #region graphs
-        public async Task<IList<GraphData>> GetGraphMonths(long id)
+        public async Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkDay(long id)
         {
-            return await GetData<IList<GraphData>>($"el/graph/{id}/month");
+            return await GetData<IList<EnergyLinkGraphData>>($"el/graph/{id}/day");
         }
-        public async Task<IList<GraphData>> GetGraphDays(long id)
+
+        public async Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkWeek(long id)
         {
-            return await GetData<IList<GraphData>>($"el/graph/{id}/day");
+            return await GetData<IList<EnergyLinkGraphData>>($"el/graph/{id}/week");
         }
+
+        public async Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkMonth(long id)
+        {
+            return await GetData<IList<EnergyLinkGraphData>>($"el/graph/{id}/month");
+        }
+
+        public async Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkYear(long id)
+        {
+            return await GetData<IList<EnergyLinkGraphData>>($"el/graph/{id}/year");
+        }
+
+        public async Task<IList<TemperatureGraphData>> GetGraphTemperatureDay(long id)
+        {
+            return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/day");
+        }
+
+        public async Task<IList<TemperatureGraphData>> GetGraphTemperatureWeek(long id)
+        {
+            return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/week");
+        }
+
+        public async Task<IList<TemperatureGraphData>> GetGraphTemperatureMonth(long id)
+        {
+            return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/month");
+        }
+
+        public async Task<IList<TemperatureGraphData>> GetGraphTemperatureYear(long id)
+        {
+            return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/year");
+        }
+
+
         public async Task<IList<Reading>> GetReadings(long id)
         {
             return await GetData<IList<Reading>>($"el/get/{id}/readings");
