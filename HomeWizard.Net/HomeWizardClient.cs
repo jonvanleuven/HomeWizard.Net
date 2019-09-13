@@ -507,7 +507,6 @@ namespace HomeWizard.Net
             return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/year");
         }
 
-
         public async Task<IList<Reading>> GetReadings(long id)
         {
             return await GetData<IList<Reading>>($"el/get/{id}/readings");

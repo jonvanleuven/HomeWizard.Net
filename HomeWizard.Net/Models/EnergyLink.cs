@@ -22,9 +22,9 @@ namespace HomeWizard.Net
         public int Po { get; set; }
         public double DayTotal { get; set; }
         [JsonProperty("po+")]
-        public int PoPlus { get; set; }
+        public int PoMax { get; set; }
         [JsonProperty("po+t")]
-        public string PoPlusT { get; set; }
+        public string PoMaxT { get; set; }
         [JsonProperty("po-")]
         public int PoMin { get; set; }
         [JsonProperty("po-t")]

@@ -36,7 +36,27 @@ void Main()
 	//return;
 	//c.GetStatus().Result.Dump();
 	//c.GetNotificationReceivers().Result.Dump();
-	c.GetStatus().Result.EnergyLinks[0].Dump();//.Chart(r => r.T).AddYSeries(r => r.A).Dump();
+	//c.GetGraphMonths(0).Dump();
+	//c.GetGraphTemperatureMonth(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.TeMin).AddYSeries(r => r.TeMax).DumpInline();
+	//c.GetGraphTemperatureYear(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.TeMin).AddYSeries(r => r.TeMax).DumpInline();
+	//return;
+	
+	c.GetGraphEneryLinkDay(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.A).DumpInline();
+	c.GetGraphEneryLinkWeek(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.A).DumpInline();
+	c.GetGraphEneryLinkMonth(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.A).DumpInline();
+	c.GetGraphEneryLinkYear(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.G).DumpInline();
+	c.GetGraphEneryLinkDay(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.G).DumpInline();
+	c.GetGraphEneryLinkWeek(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.G).DumpInline();
+	c.GetGraphEneryLinkMonth(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.G).DumpInline();
+	c.GetGraphEneryLinkYear(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.G).DumpInline();
+	c.GetGraphTemperatureDay(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.Te).DumpInline();
+	c.GetGraphTemperatureWeek(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.Te).DumpInline();
+	c.GetGraphTemperatureMonth(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.TeMin).AddYSeries(r => r.TeMax).DumpInline();
+	c.GetGraphTemperatureYear(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.TeMin).AddYSeries(r => r.TeMax).DumpInline();
+	c.GetGraphTemperatureDay(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.Hu).DumpInline();
+	c.GetGraphTemperatureWeek(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.Hu).DumpInline();
+	c.GetGraphTemperatureMonth(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.HuMin).AddYSeries(r => r.HuMax).DumpInline();
+	c.GetGraphTemperatureYear(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.HuMin).AddYSeries(r => r.HuMax).DumpInline();
 	return;
 	c.GetEnergyMeters().Result.Dump("GetEnergyMeters");
 	c.GetKaKuSensorLogs(0).Result.Dump("GetKaKuSensorLogs");
