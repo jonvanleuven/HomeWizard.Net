@@ -497,14 +497,14 @@ namespace HomeWizard.Net
             return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/week");
         }
 
-        public async Task<IList<TemperatureGraphData>> GetGraphTemperatureMonth(long id)
+        public async Task<IList<TemperatureMinMaxGraphData>> GetGraphTemperatureMonth(long id)
         {
-            return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/month");
+            return await GetData<IList<TemperatureMinMaxGraphData>>($"te/graph/{id}/month");
         }
 
-        public async Task<IList<TemperatureGraphData>> GetGraphTemperatureYear(long id)
+        public async Task<IList<TemperatureMinMaxGraphData>> GetGraphTemperatureYear(long id)
         {
-            return await GetData<IList<TemperatureGraphData>>($"te/graph/{id}/year");
+            return await GetData<IList<TemperatureMinMaxGraphData>>($"te/graph/{id}/year");
         }
 
         public async Task<IList<Reading>> GetReadings(long id)

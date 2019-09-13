@@ -46,8 +46,8 @@ namespace HomeWizard.Net
         Task<IList<EnergyLinkGraphData>> GetGraphEneryLinkYear(long id);
         Task<IList<TemperatureGraphData>> GetGraphTemperatureDay(long id);
         Task<IList<TemperatureGraphData>> GetGraphTemperatureWeek(long id);
-        Task<IList<TemperatureGraphData>> GetGraphTemperatureMonth(long id);
-        Task<IList<TemperatureGraphData>> GetGraphTemperatureYear(long id);
+        Task<IList<TemperatureMinMaxGraphData>> GetGraphTemperatureMonth(long id);
+        Task<IList<TemperatureMinMaxGraphData>> GetGraphTemperatureYear(long id);
         Task<IList<Reading>> GetReadings(long id);
         Task<IList<NotificationReceiver>> GetNotificationReceivers();
     }
