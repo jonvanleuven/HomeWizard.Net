@@ -22,6 +22,15 @@
         Virtual
     }
 
+    public enum KakuSensorType
+    {
+        Motion,
+        Contact,
+        Smoke,
+        Camera,
+        Doorbell
+    }
+
     public enum Preset
     {
         Home = 0,

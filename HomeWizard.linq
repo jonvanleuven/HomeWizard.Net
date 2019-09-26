@@ -32,6 +32,9 @@ void Main()
 
 	//var c = new HomeWizardClient();
 	var c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
+	c.GetSensors().Result.KakuSensors.Dump();
+	//c.GetSwitches().Result.Dump();
+	return;
 	//c.GetSwitches().Result.Select(r => r.GetType()).Dump();
 	//return;
 	//c.GetStatus().Result.Dump();
@@ -40,7 +43,6 @@ void Main()
 	//c.GetGraphTemperatureMonth(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.TeMin).AddYSeries(r => r.TeMax).DumpInline();
 	//c.GetGraphTemperatureYear(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.TeMin).AddYSeries(r => r.TeMax).DumpInline();
 	//return;
-	
 	
 	c.GetGraphEneryLinkDay(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.A).DumpInline();
 	c.GetGraphEneryLinkWeek(0).Result.Dump().Chart(r => r.T).AddYSeries(r => r.A).DumpInline();
