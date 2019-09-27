@@ -47,16 +47,16 @@ namespace HomeWizard.Net.Test
             Assert.AreEqual(3, sensors.Switches.Count);
             Assert.AreEqual(SwitchType.Dimmer, sensors.Switches[0].Type);
             Assert.IsInstanceOfType(sensors.Switches[0], typeof(Dimmer));
-            Assert.IsTrue(sensors.Switches[0].IsDimmer);
-            Assert.IsFalse(sensors.Switches[0].IsHue);
+            Assert.IsTrue(sensors.Switches[0].IsDimmer());
+            Assert.IsFalse(sensors.Switches[0].IsHue());
             Assert.AreEqual(SwitchType.Switch, sensors.Switches[1].Type);
             Assert.IsInstanceOfType(sensors.Switches[1], typeof(Switch));
-            Assert.IsFalse(sensors.Switches[1].IsDimmer);
-            Assert.IsFalse(sensors.Switches[1].IsHue);
+            Assert.IsFalse(sensors.Switches[1].IsDimmer());
+            Assert.IsFalse(sensors.Switches[1].IsHue());
             Assert.AreEqual(SwitchType.Hue, sensors.Switches[2].Type);
             Assert.IsInstanceOfType(sensors.Switches[2], typeof(HueLight));
-            Assert.IsFalse(sensors.Switches[2].IsDimmer);
-            Assert.IsTrue(sensors.Switches[2].IsHue);
+            Assert.IsFalse(sensors.Switches[2].IsDimmer());
+            Assert.IsTrue(sensors.Switches[2].IsHue());
 
             Assert.AreEqual(0, sensors.UvMeters.Count);
             Assert.AreEqual(0, sensors.WindMeters.Count);
@@ -82,16 +82,16 @@ namespace HomeWizard.Net.Test
             Assert.AreEqual(3, switches.Count);
             Assert.AreEqual(SwitchType.Dimmer, switches[0].Type);
             Assert.IsInstanceOfType(switches[0], typeof(Dimmer));
-            Assert.IsTrue(switches[0].IsDimmer);
-            Assert.IsFalse(switches[0].IsHue);
+            Assert.IsTrue(switches[0].IsDimmer());
+            Assert.IsFalse(switches[0].IsHue());
             Assert.AreEqual(SwitchType.Dimmer, switches[1].Type);
             Assert.IsInstanceOfType(switches[1], typeof(Dimmer));
-            Assert.IsTrue(switches[1].IsDimmer);
-            Assert.IsFalse(switches[1].IsHue);
+            Assert.IsTrue(switches[1].IsDimmer());
+            Assert.IsFalse(switches[1].IsHue());
             Assert.AreEqual(SwitchType.Switch, switches[2].Type);
             Assert.IsInstanceOfType(switches[2], typeof(Switch));
-            Assert.IsFalse(switches[2].IsDimmer);
-            Assert.IsFalse(switches[2].IsHue);
+            Assert.IsFalse(switches[2].IsDimmer());
+            Assert.IsFalse(switches[2].IsHue());
         }
 
         [TestMethod]
