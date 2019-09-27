@@ -26,6 +26,7 @@
     {
         Motion,
         Contact,
+        Contact868,
         Smoke,
         Camera,
         Doorbell

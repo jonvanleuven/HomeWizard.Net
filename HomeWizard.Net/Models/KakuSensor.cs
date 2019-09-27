@@ -1,4 +1,5 @@
-﻿using HomeWizard.Net.Converters;
+﻿using System;
+using HomeWizard.Net.Converters;
 using Newtonsoft.Json;
 
 namespace HomeWizard.Net
@@ -10,5 +11,8 @@ namespace HomeWizard.Net
         public string TimeStamp { get; set; }
         public KakuSensorType Type { get; set; }
         public string CameraId { get; set; }
+        [JsonConverter(typeof(BooleanConverter))]
+        public bool? LowBattery { get; set; }
+        public DateTime? LastSeen { get; set; }
     }
 }
