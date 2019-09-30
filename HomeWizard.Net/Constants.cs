@@ -5,6 +5,7 @@
         public const string BaseUrl = "http://{ipAddress}/{password}/{command}/";
         public const string HandshakeUrl = "http://{ipAddress}/{command}/";
         public const string DiscoveryUrl = "http://gateway.homewizard.nl/discovery.php";
+        public const string CloudUrl = "https://cloud.homewizard.com";
 
         public const decimal TemperatureMax = 35;
         public const decimal TemperatureMin = 5;

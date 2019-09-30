@@ -6,7 +6,8 @@ namespace HomeWizard.Net
     public interface IHomeWizardClient
     {
         bool IsLocal { get; }
-        Task<Discovery> Discover();
+        Task<bool> IsValidPassword();
+        Task<Handshake> GetHandshake();
         Task<SunTimes> GetSunTimesForToday();
         Task<IList<SunTimes>> GetSunTimesForWeek();
         Task<IList<Switch>> GetSwitches();

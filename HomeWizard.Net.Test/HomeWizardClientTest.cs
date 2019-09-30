@@ -8,11 +8,11 @@ namespace HomeWizard.Net.Test
     [TestClass]
     public class HomeWizardClientTest
     {
-        private class HomeWizardTestClient : HomeWizardClient
+        private class HomeWizardTestClient : HomeWizardClientBase
         {
             public string TestData { private get; set; }
 
-            public HomeWizardTestClient(string ipAddress, string password) : base(ipAddress, password) { }
+            public override bool IsLocal => true;
 
             protected override async Task<string> GetData(string command)
             {
@@ -23,7 +23,7 @@ namespace HomeWizard.Net.Test
         [TestMethod]
         public async Task HandshakeTest()
         {
-            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient("127.0.0.1", "test");
+            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient();
             testHomeWizard.TestData = "{\"status\": \"ok\", \"version\": \"3.35\", \"request\": {\"route\": \"/handshake\" }, \"response\": {\"homewizard\": \"yes\", \"version\": \"3.35\", \"firmwareupdateavailable\": \"no\", \"appupdaterequired\": \"no\", \"serial\": \"999999999\"}}";
             Handshake handshake = await testHomeWizard.GetHandshake();
 
@@ -37,7 +37,7 @@ namespace HomeWizard.Net.Test
         [TestMethod]
         public async Task SensorsTest()
         {
-            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient("127.0.0.1", "test");
+            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient();
             testHomeWizard.TestData = "{\"status\": \"ok\", \"version\": \"3.35\", \"request\": {\"route\": \"/get-sensors\" }, \"response\": {\"preset\":0,\"time\":\"2015-12-27 16:28\",\"switches\":[{\"id\":0,\"name\":\"Dimmer 1\",\"type\":\"dimmer\",\"status\":\"on\",\"dimlevel\":73,\"favorite\":\"no\"},{\"id\":1,\"name\":\"Switch 1\",\"type\":\"switch\",\"status\":\"on\",\"favorite\":\"no\"},{\"id\":2,\"name\":\"Hue 1\",\"type\":\"hue\",\"status\":\"on\",\"hue_id\":0,\"light_id\":2,\"color\":{\"hue\":60,\"sat\":28,\"bri\":100},\"favorite\":\"no\"}],\"uvmeters\":[],\"windmeters\":[],\"rainmeters\":[],\"thermometers\":[],\"weatherdisplays\":[], \"energymeters\": [], \"energylinks\": [], \"heatlinks\": [{\"id\": 0, \"favorite\": \"no\", \"name\": \"HeatLink\", \"code\": \"999999\", \"pump\": \"on\", \"heating\": \"on\", \"dhw\": \"off\", \"rte\": 19.757, \"rsp\": 20.000, \"tte\": 0.000, \"ttm\": null, \"wp\": 0.000, \"wte\": 65.437, \"ofc\": 0, \"odc\": 0, \"presets\": [{ \"id\": 0, \"te\": 20.00},{ \"id\": 1, \"te\": 12.00},{ \"id\": 2, \"te\": 21.00},{ \"id\": 3, \"te\": 16.00}]}], \"hues\": [{\"id\":0,\"name\":\"Hue Bridge\",\"username\":\"abcdefghijklmno\",\"ip\":\"127.0.0.1\"}], \"scenes\": [{\"id\": 0, \"name\": \"Scene 1\", \"favorite\": \"no\"}], \"kakusensors\": [], \"cameras\": []}}";
             Sensors sensors = await testHomeWizard.GetSensors();
 
@@ -75,7 +75,7 @@ namespace HomeWizard.Net.Test
         [TestMethod]
         public async Task SceneSwitchesTest()
         {
-            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient("127.0.0.1", "test");
+            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient();
             testHomeWizard.TestData = "{\"status\": \"ok\", \"version\": \"3.35\", \"request\": {\"route\": \"/gp\" }, \"response\": [{\"type\":\"dimmer\",\"id\":0,\"name\":\"Switch 1\",\"onstatus\":33,\"offstatus\":100},{\"type\":\"dimmer\",\"id\":2,\"name\":\"Switch 2\",\"onstatus\":30,\"offstatus\":100},{\"type\":\"switch\",\"id\":3,\"name\":\"Switch 3\",\"onstatus\":18,\"offstatus\":100}]}";
             IList<Switch> switches = await testHomeWizard.GetSceneSwitches(1);
 
@@ -97,7 +97,7 @@ namespace HomeWizard.Net.Test
         [TestMethod]
         public async Task TriggerTest()
         {
-            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient("127.0.0.1", "test");
+            HomeWizardTestClient testHomeWizard = new HomeWizardTestClient();
             testHomeWizard.TestData = "{\"status\": \"ok\", \"version\": \"3.35\", \"request\": {\"route\": \"/triggers\" }, \"response\": [{\"id\":0,\"type\":\"time\",\"time\":\"17:00\",\"presets\":[0,1,2,3],\"days\":[1,2,3,4,5],\"actions\":[{\"id\":0,\"deviceType\":\"switch\",\"deviceId\":1,\"value\":\"on\",\"offTime\":0}],\"notification\":{\"receivers\":[],\"soundId\":0},\"active\":\"yes\"},{\"id\":1,\"type\":\"preset\",\"preset\":0,\"startTime\":\"r+60\",\"endTime\":\"s-60\",\"days\":[0,1,2,3,4,5,6],\"actions\":[{\"id\":0,\"deviceType\":\"dimmer\",\"deviceId\":3,\"value\":\"50\",\"offTime\":0}],\"notification\":{\"receivers\":[],\"soundId\":0},\"active\":\"yes\"}]}";
             IList<Trigger> triggers = await testHomeWizard.GetTriggers();
 

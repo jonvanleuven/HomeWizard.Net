@@ -5,21 +5,31 @@ using Newtonsoft.Json;
 
 namespace HomeWizard.Net
 {
-    public class HomeWizardCloudClient : HomeWizardClient, IHomeWizardClient
+    public class HomeWizardCloudClient : HomeWizardClientBase, IHomeWizardClient
     {
         private readonly string sessionKey;
         private readonly string serial;
-        public HomeWizardCloudClient(string sessionKey, string serial)
+        public HomeWizardCloudClient(string sessionKey, string serial) : base()
         {
             this.sessionKey = sessionKey;
             this.serial = serial;
         }
 
-        public bool IsLocal => false;
+        public override bool IsLocal => false;
+
+        /// <summary>
+        /// Discover a HomeWizard on the local network
+        /// </summary>
+        /// <returns>Object containing the IP address. If no HomeWizard was found, the IP address is empty</returns>
+        public static async Task<Discovery> Discover()
+        {
+            var data = await DoRequest(Constants.DiscoveryUrl, new HttpClient {Timeout = TimeSpan.FromSeconds(30)});
+            return JsonConvert.DeserializeObject<Discovery>(data);
+        }
 
         public static Login Login(string username, string password, string name = null)
         {
-            var url = $"https://cloud.homewizard.com/account/login/?username={username}&password={password}";
+            var url = $"{Constants.CloudUrl}/account/login/?username={username}&password={password}";
             using (var response = new HttpClient { Timeout = TimeSpan.FromSeconds(30) }.GetAsync(url).Result)
             {
                 response.EnsureSuccessStatusCode();

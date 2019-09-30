@@ -6,7 +6,7 @@ namespace HomeWizard.Net
     {
         public static IHomeWizardClient Create(string username, string passwordLocal, string passwordCloud, string name = null)
         {
-            var discover = new HomeWizardClient().Discover().Result;
+            var discover = HomeWizardCloudClient.Discover().Result;
             if (string.IsNullOrEmpty(discover.Ip))
                 return CreateCloud(username, passwordCloud, name);
             return CreateLocal(discover.Ip, passwordLocal);
