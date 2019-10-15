@@ -26,13 +26,17 @@ void Main()
 	// - SonosExtensions: eenvoudig virtual ip switch aanmaken/aanpassen
 	// - setters van models private maken
 	// - meer api calls: LockX, radiatorknoppen.... etc
+	// - notification receiver toevoegen en afvangen (webserver)
+	// - Homekit integratie?
 
 	//var s = Util.GetPassword("HomeWizardOnlineSessionId").Split(',').Select(e => e.Split(':').Select(x => x.Replace("\"", "").Replace("}]", "")).ToArray()).Dump();
 	//return;
 
 	//var c = new HomeWizardClient();
 	var c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
-	c.GetSensors().Result.KakuSensors.Dump();
+	c.IsLocal.Dump();
+	c.GetSensors().Result.KakuSensors.OrderByDescending(k => k.TimeStamp).Dump();
+	//c.GetKaKuSensorLogs(0).Result.Dump();
 	//c.GetSwitches().Result.Dump();
 	return;
 	//c.GetSwitches().Result.Select(r => r.GetType()).Dump();
