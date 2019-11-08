@@ -19,7 +19,8 @@
         Dimmer,
         Hue,
         Somfy,
-        Virtual
+        Virtual,
+        Led5ch
     }
 
     public enum KakuSensorType

@@ -32,6 +32,8 @@ namespace HomeWizard.Net
         Task<string> LearnSwitchCode();
         Task SwitchOn(long id, int? level = null);
         Task SwitchOff(long id);
+        Task SwitchOn(string code, int? level = null);
+        Task SwitchOff(string code);
         Task DimSwitch(long id, int level);
         Task SomfyUp(long id);
         Task SomfyDown(long id);

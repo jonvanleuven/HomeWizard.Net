@@ -35,14 +35,14 @@ namespace HomeWizard.Net
         
         protected static async Task<string> DoRequest(string url, HttpClient httpClient)
         {
-            using (HttpResponseMessage response = await httpClient.GetAsync(url))
+            using (var response = await httpClient.GetAsync(url))
             {
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }
         }
 
-        protected async Task<string> DoRequest(string url)
+        protected virtual async Task<string> DoRequest(string url)
         {
             return await DoRequest(url, _httpClient);
         }
@@ -317,6 +317,20 @@ namespace HomeWizard.Net
         public async Task SwitchOff(long id)
         {
             await GetData("sw/" + id + "/off");
+        }
+
+        public async Task SwitchOn(string code, int? level = null)
+        {
+            if(code?.Length != 10)
+                throw new Exception("Invalid code");
+            await GetData("sw/send/" + code + "/" + (level!=null? ""+level : "on"));
+        }
+
+        public async Task SwitchOff(string code)
+        {
+            if (code?.Length != 10)
+                throw new Exception("Invalid code");
+            await GetData("sw/send/" + code + "/off");
         }
 
         /// <summary>

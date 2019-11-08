@@ -12,6 +12,8 @@ namespace HomeWizard.Net
         public int OnStatus { get; set; }
         public int OffStatus { get; set; }
         public string Code { get; set; }
+        public string Version { get; set; }
+        public HueLight.HueColor Color { get; set; }
     }
 
     public static class SwitchExtensions
