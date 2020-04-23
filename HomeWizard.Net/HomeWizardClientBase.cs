@@ -329,7 +329,7 @@ namespace HomeWizard.Net
         public async Task SwitchOff(string code)
         {
             if (code?.Length != 10)
-                throw new Exception("Invalid code");
+                throw new ArgumentException(nameof(code));
             await GetData("sw/send/" + code + "/off");
         }
 
@@ -341,6 +341,18 @@ namespace HomeWizard.Net
         public async Task DimSwitch(long id, int level)
         {
             await GetData("sw/dim/" + id + "/" + NormalizeDimLevel(level));
+        }
+
+        public async Task HueSwitch(long id, int hue, int saturation, int brichtness)
+        {
+            if( hue < 0 || hue > 360 ) 
+                throw new ArgumentException(nameof(hue));
+            if( saturation < 0 || saturation > 100 ) 
+                throw new ArgumentException(nameof(saturation));
+            if( brichtness < 0 || brichtness > 100 ) 
+                throw new ArgumentException(nameof(brichtness));
+
+            await GetData($"sw/{id}/on/{hue}/{saturation}/{brichtness}");
         }
 
         /// <summary>

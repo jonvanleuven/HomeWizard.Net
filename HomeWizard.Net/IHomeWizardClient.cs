@@ -19,7 +19,7 @@ namespace HomeWizard.Net
         Task<IList<Scene>> GetScenes();
         Task<Sensors> GetSensors();
         Task<List<KakuSensorLog>> GetKaKuSensorLogs(long id);
-        Task<Sensors> GetStatus();
+        Task<Sensors> GetStatus(); //TODO Status object van maken en niet verkeerd hergebruik van Sensors object met de objecten daarbinnen!
         Task<IList<Trigger>> GetTriggers();
         Task SwitchPreset(Preset preset);
         Task SceneOn(long id);
@@ -35,6 +35,7 @@ namespace HomeWizard.Net
         Task SwitchOn(string code, int? level = null);
         Task SwitchOff(string code);
         Task DimSwitch(long id, int level);
+        Task HueSwitch(long id, int hue, int saturation, int brightness);
         Task SomfyUp(long id);
         Task SomfyDown(long id);
         Task<long> AddSwitch(string name, SwitchType type, string code);

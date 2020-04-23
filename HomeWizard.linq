@@ -29,11 +29,47 @@ void Main()
 	// - notification receiver toevoegen en afvangen (webserver)
 	// - Homekit integratie?
 
-	//var s = Util.GetPassword("HomeWizardOnlineSessionId").Split(',').Select(e => e.Split(':').Select(x => x.Replace("\"", "").Replace("}]", "")).ToArray()).Dump();
-	//return;
-
 	//var c = new HomeWizardClient();
-	var c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
+	//var c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
+	var login = HomeWizardCloudClient.Login(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("HomewizardOnline", false));
+	var c = new HomeWizardCloudClientWithLogging(login.Session, login.Response.First().Serial) as IHomeWizardClient;
+	//c.AddSwitch("Zolder overl", SwitchType.Switch, "01EF696E09").Wait();
+	//return;
+	//c.GetSensors().Result.Dump();
+	
+	
+	//c.GetSw
+	//c.SwitchOn("000094A501").Wait();
+	//return;
+	//c.GetSwitches().Dump();
+	//c.DimSwitch(1, 1).Dump();
+	//c.SwitchOn(11);
+	c.HueSwitch(11, 0, 100, 100).Wait();
+	//c.GetScenes().Result.Dump();
+	return;
+	
+	string current = null;
+	foreach (var d in Poller(TimeSpan.FromMinutes(1)))
+	{
+		try
+		{
+			var sensors = c.GetSensors().Result;
+			if( sensors == null ) {
+				c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
+				continue;
+			}
+			var log = $"{((Preset)sensors.Preset)}: temp {c.GetThermoMeters().Result.Skip(1).First().Temperature}ºC";
+			if (current != log)
+				Console.WriteLine($"{DateTime.Now:HH:mm:ss} {log}");
+			current = log;
+		}
+		catch (Exception e)
+		{
+			e.Dump();
+			Console.WriteLine($"{DateTime.Now:HH:mm:ss} ERROR: {e.Message}");
+		}
+	}
+	
 	c.IsLocal.Dump();
 	c.GetSensors().Result.KakuSensors.OrderByDescending(k => k.TimeStamp).Dump();
 	//c.GetKaKuSensorLogs(0).Result.Dump();
@@ -102,6 +138,65 @@ void Main()
 	//c.SceneOn(0);
 	c.GetSwitches().Dump();
 	c.GetStatus().Dump();
+}
+
+
+
+public static IEnumerable<DateTime> Poller(TimeSpan t)
+{
+	yield return DateTime.Now;
+	while (true)
+	{
+		Thread.Sleep((int)t.TotalMilliseconds);
+		yield return DateTime.Now;
+	}
+}
+public class HomeWizardCloudClientWithLogging : HomeWizardCloudClient
+{
+	public HomeWizardCloudClientWithLogging(string sessionKey, string serial) : base(sessionKey, serial)
+	{
+	}
+
+
+	protected override async Task<string> DoRequest(string url)
+	{
+		//try all lists met 2 letters:
+		/*var alphabet = "abcdefghijklmnopqrstuvwxyz".ToArray();
+		foreach (var a in alphabet)
+		{
+			foreach (var b in alphabet)
+			{
+				var turl = url.Replace("/gplist", $"/{a}{b}list");
+				try
+				{
+					Console.WriteLine("try: " + turl);
+					using (HttpResponseMessage response = await new HttpClient().GetAsync(turl))
+					{
+						response.EnsureSuccessStatusCode();
+						Console.WriteLine("validurl: "+ turl);
+						response.Content.ReadAsStringAsync().Result.Dump(turl);
+					}
+
+				}
+				catch (Exception e)
+				{
+
+				}
+
+
+			}
+
+		}
+		*/
+		//url = url.Replace("/gplist", $"/tasks");
+		//url = url.Replace("/sw/dim/1/1", $"/sw/11/on/0/200/100");
+		
+		using (HttpResponseMessage response = await new HttpClient().GetAsync(url))
+		{
+			response.EnsureSuccessStatusCode();
+			return await response.Content.ReadAsStringAsync().Dump(url);
+		}
+	}
 }
 
 // Define other methods and classes here
