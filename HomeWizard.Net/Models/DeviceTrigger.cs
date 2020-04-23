@@ -2,9 +2,9 @@
 {
     public class DeviceTrigger : Trigger
     {
-        private KakuSensorType SensorType { get; set; }
-        private int SensorId { get; set; }
-        private int Event { get; set; }
-        private YesNo CheckOnStart { get; set; }
+        public KakuSensorType SensorType { get; set; }
+        public int SensorId { get; set; }
+        public int Event { get; set; }
+        public YesNo CheckOnStart { get; set; }
     }
 }
