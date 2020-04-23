@@ -21,8 +21,9 @@ namespace HomeWizard.Net
             public long? Id { get; set; }
             public string DeviceType { get; set; }
             public long DeviceId { get; set; }
-            public string Value { get; set; } //on|off for switch, 0-100 for dimmer
-            public int OffTime { get; set; } //No idea
+            public string Value { get; set; } //on|off for switch, 0-100 for dimmer, decimal for heatlink
+            public int OffTime { get; set; } //turn off after x minutes
+            public Preset? Preset { get; set; }
         }
 
         public class TriggerNotification
