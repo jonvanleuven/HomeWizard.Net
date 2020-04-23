@@ -4,9 +4,9 @@ using Newtonsoft.Json.Converters;
 
 namespace HomeWizard.Net
 {
-    public class TimeTrigger : Trigger
+    public class CodeTrigger : Trigger
     {
-        public string Time { get; set; }
+        public string Code { get; set; }
         [JsonProperty(ItemConverterType = typeof(StringEnumConverter))]
         public IList<Preset> Presets { get; set; } 
     }

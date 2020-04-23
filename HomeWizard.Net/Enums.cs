@@ -55,6 +55,8 @@
     public enum TriggerType
     {
         Time,
-        Preset
+        Preset,
+        Device,
+        Code
     }
 }

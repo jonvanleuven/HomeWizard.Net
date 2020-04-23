@@ -11,11 +11,17 @@ namespace HomeWizard.Net.Converters
             {
                 string typeText = jObject["type"].ToString();
                 if (typeText == "preset" || typeText == ((int)TriggerType.Preset).ToString())
-                {
                     return new PresetTrigger();
-                }
+                if (typeText == "time" || typeText == ((int)TriggerType.Time).ToString())
+                    return new TimeTrigger();
+                if (typeText == "code" || typeText == ((int)TriggerType.Code).ToString())
+                    return new CodeTrigger();
+                if (typeText == "device" || typeText == ((int)TriggerType.Device).ToString())
+                    return new DeviceTrigger();
+                throw new Exception($"cannot parse Trigger: invalid type {typeText}");
+
             }
-            return new TimeTrigger();
+            throw new Exception("cannot parse Trigger: no type available");
         }
     }
 }

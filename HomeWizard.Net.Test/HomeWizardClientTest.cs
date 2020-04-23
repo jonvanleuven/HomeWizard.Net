@@ -105,8 +105,6 @@ namespace HomeWizard.Net.Test
 
             Assert.AreEqual(TriggerType.Time, triggers[0].Type);
             Assert.IsInstanceOfType(triggers[0], typeof(TimeTrigger));
-            Assert.IsTrue(triggers[0].IsTimeTrigger);
-            Assert.IsFalse(triggers[0].IsPresetTrigger);
             Assert.AreEqual("17:00", ((TimeTrigger)triggers[0]).Time);
             Assert.AreEqual(Preset.Home, ((TimeTrigger)triggers[0]).Presets[0]);
             Assert.AreEqual(Preset.Away, ((TimeTrigger)triggers[0]).Presets[1]);
@@ -123,8 +121,6 @@ namespace HomeWizard.Net.Test
 
             Assert.AreEqual(TriggerType.Preset, triggers[1].Type);
             Assert.IsInstanceOfType(triggers[1], typeof(PresetTrigger));
-            Assert.IsFalse(triggers[1].IsTimeTrigger);
-            Assert.IsTrue(triggers[1].IsPresetTrigger);
             Assert.AreEqual(Preset.Home, ((PresetTrigger)triggers[1]).Preset);
             Assert.AreEqual("r+60", ((PresetTrigger)triggers[1]).StartTime); //60 minutes after sunrise
             Assert.AreEqual("s-60", ((PresetTrigger)triggers[1]).EndTime); //60 minutes before sunset
