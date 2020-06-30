@@ -414,6 +414,11 @@ namespace HomeWizard.Net
             await GetData("sw/remove/" + id);
         }
 
+        public async Task RemoveNotificationReciever(long id)
+        {
+            await GetData("nfr/remove/" + id);
+        }
+
         #endregion
 
         #region Triggers

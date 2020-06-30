@@ -33,18 +33,37 @@ void Main()
 	//var c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
 	var login = HomeWizardCloudClient.Login(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("HomewizardOnline", false));
 	var c = new HomeWizardCloudClientWithLogging(login.Session, login.Response.First().Serial) as IHomeWizardClient;
+
+//V TODO:
+//removeNotificationReceiver: $"/nfr/remove/{id}");
+
+
+	c.GetNotificationReceivers().Dump();
+	return;
+
+	while(true)
+	{
+		c.LearnSwitchCode().Dump();
+		Console.ReadLine();
+	}
+	return;
+	
 	//c.AddSwitch("Zolder overl", SwitchType.Switch, "01EF696E09").Wait();
 	//return;
 	//c.GetSensors().Result.Dump();
-	
-	
+
+
 	//c.GetSw
 	//c.SwitchOn("000094A501").Wait();
 	//return;
 	//c.GetSwitches().Dump();
-	//c.DimSwitch(1, 1).Dump();
-	//c.SwitchOn(11);
-	c.HueSwitch(11, 0, 100, 100).Wait();
+	var triggers = c.GetTriggers().Result;
+	triggers.Select(t => t as DeviceTrigger).Where(t => t != null).Dump();
+	triggers.Select(t => t as CodeTrigger).Where(t => t != null).Dump();
+	triggers.Select(t => t as PresetTrigger).Where(t => t != null).Dump();
+	triggers.Select(t => t as TimeTrigger).Where(t => t != null).Dump();
+	//c.SwitchOff(11);
+	//c.HueSwitch(11, 0, 100, 100).Wait();
 	//c.GetScenes().Result.Dump();
 	return;
 	
@@ -188,10 +207,10 @@ public class HomeWizardCloudClientWithLogging : HomeWizardCloudClient
 
 		}
 		*/
-		//url = url.Replace("/gplist", $"/tasks");
-		//url = url.Replace("/sw/dim/1/1", $"/sw/11/on/0/200/100");
+		//url = url.Replace("/nf-receivers", $"/nfr/remove/0");
+		//url = url.Replace("/sw/dim/1/1", $"/triggers");
 		
-		using (HttpResponseMessage response = await new HttpClient().GetAsync(url))
+		using (HttpResponseMessage response = await new HttpClient().GetAsync(url.Dump()))
 		{
 			response.EnsureSuccessStatusCode();
 			return await response.Content.ReadAsStringAsync().Dump(url);

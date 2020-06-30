@@ -54,5 +54,7 @@ namespace HomeWizard.Net
         Task<IList<TemperatureMinMaxGraphData>> GetGraphTemperatureYear(long id);
         Task<IList<Reading>> GetReadings(long id);
         Task<IList<NotificationReceiver>> GetNotificationReceivers();
+        Task RemoveNotificationReciever(long id);
+
     }
 }
