@@ -28,6 +28,9 @@ void Main()
 	// - meer api calls: LockX, radiatorknoppen.... etc
 	// - notification receiver toevoegen en afvangen (webserver)
 	// - Homekit integratie?
+	// V "homewizard notifications not working":
+	//     - verwijder notification receiver via API en voeg weer toe via app:
+	//     - https://hw.homewizard.net/en/support/solutions/articles/19000090832-no-more-notification-from-homewizard
 
 	//var c = new HomeWizardClient();
 	//var c = HomeWizardClientFactory.Create(Util.GetPassword("HomewizardUsername", false), Util.GetPassword("Homewizard", false), Util.GetPassword("HomewizardOnline", false));
@@ -37,7 +40,8 @@ void Main()
 //V TODO:
 //removeNotificationReceiver: $"/nfr/remove/{id}");
 
-
+//c.GetNotificationReceiver(0).Dump();
+	//c.SendTestMessageNotificationReceiver(0);
 	c.GetNotificationReceivers().Dump();
 	return;
 
@@ -207,7 +211,8 @@ public class HomeWizardCloudClientWithLogging : HomeWizardCloudClient
 
 		}
 		*/
-		//url = url.Replace("/nf-receivers", $"/nfr/remove/0");
+		//url = url.Replace("/nf-receivers", $"/nfr/get/0");
+		//url = url.Replace("/nf-receivers", $"/nfr/send/0/high");
 		//url = url.Replace("/sw/dim/1/1", $"/triggers");
 		
 		using (HttpResponseMessage response = await new HttpClient().GetAsync(url.Dump()))

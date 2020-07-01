@@ -523,6 +523,16 @@ namespace HomeWizard.Net
             return await GetData<IList<Reading>>($"el/get/{id}/readings");
         }
 
+        public async Task<NotificationReceiver> GetNotificationReceiver(long id)
+        {
+            return await GetData<NotificationReceiver>($"nfr/get/{id}");
+        }
+
+        public async Task SendTestMessageNotificationReceiver(long id)
+        {
+            await GetData<NotificationReceiver>($"nfr/send/{id}");
+        }
+
         public async Task<IList<NotificationReceiver>> GetNotificationReceivers()
         {
             return await GetData<IList<NotificationReceiver>>("nf-receivers");

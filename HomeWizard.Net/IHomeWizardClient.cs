@@ -55,6 +55,7 @@ namespace HomeWizard.Net
         Task<IList<Reading>> GetReadings(long id);
         Task<IList<NotificationReceiver>> GetNotificationReceivers();
         Task RemoveNotificationReciever(long id);
-
+        Task<NotificationReceiver> GetNotificationReceiver(long id);
+        Task SendTestMessageNotificationReceiver(long id);
     }
 }
